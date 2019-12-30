@@ -151,3 +151,52 @@ predictions = [1 if x>0.5 else 0 for x in predictions]
 accuracy = accuracy_score(y_val, predictions)
 print('Val Accuracy = %.2f' % accuracy)
 
+
+'''
+#INSTEAD OF IMPORTING VGG16 WE CAN ALSO DO THE FOLLOWING
+
+import keras,os
+from keras.models import Sequential
+from keras.layers import Dense, Conv2D, MaxPool2D , Flatten
+from keras.preprocessing.image import ImageDataGenerator
+import numpy as np
+
+trdata = ImageDataGenerator()
+traindata = trdata.flow_from_directory(directory="C:/Users/Akshobhya/brain/train",target_size=(224,224))
+tsdata = ImageDataGenerator()
+testdata = tsdata.flow_from_directory(directory="C:/Users/Akshobhya/brain/test", target_size=(224,224))
+
+import tensorflow
+from tensorflow.keras.datasets import cifar10
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
+from tensorflow.python.framework import ops
+ops.reset_default_graph()
+from keras.preprocessing.image import ImageDataGenerator
+import numpy as np
+
+model = Sequential()
+model.add(Conv2D(input_shape=(224,224,3),filters=64,kernel_size=(3,3),padding="same", activation="relu"))
+model.add(Conv2D(filters=64,kernel_size=(3,3),padding="same", activation="relu"))
+model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
+model.add(Conv2D(filters=128, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(Conv2D(filters=128, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
+model.add(Conv2D(filters=256, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(Conv2D(filters=256, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(Conv2D(filters=256, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding="same", activation="relu"))
+model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
+
+
+
+'''
